@@ -47,6 +47,7 @@ export default function bootstrap() {
       position: TOOL_POSITION.REAR_END,
       template: html`
         <mwc-button
+          style="margin:auto 0;"
           @click="${() => {
             uploadFile()
           }}"
