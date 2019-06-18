@@ -1,7 +1,7 @@
 import { store } from '@things-factory/shell'
 import { html } from 'lit-html'
 import '@material/mwc-button/mwc-button'
-import { APPEND_FOOTERBAR, TOOL_POSITION } from '@things-factory/layout-base'
+import { APPEND_CONTEXT_TOOL, TOOL_POSITION } from '@things-factory/layout-base'
 import { IMPORT } from '@things-factory/import-base'
 
 function onFileChanged(event) {
@@ -12,12 +12,16 @@ function onFileChanged(event) {
 
   // Ready The Event For When A File Gets Selected
   reader.onload = function(e) {
-    const params = e.target.result
+    const data = e.target.result
+    const state = store.getState()
 
     store.dispatch({
       type: IMPORT,
-      extension,
-      params
+      importable: {
+        extension,
+        ...state.route.context.importable
+      },
+      data
     })
   }
 
@@ -42,8 +46,8 @@ function uploadFile() {
 export default function bootstrap() {
   import('./components/import-context-ui')
   store.dispatch({
-    type: APPEND_FOOTERBAR,
-    footer: {
+    type: APPEND_CONTEXT_TOOL,
+    tool: {
       position: TOOL_POSITION.REAR_END,
       template: html`
         <mwc-button
