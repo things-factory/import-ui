@@ -47,7 +47,6 @@ function uploadFile() {
 }
 
 export default function bootstrap() {
-  import('./components/import-context-ui')
   store.dispatch({
     type: APPEND_CONTEXT_TOOL,
     tool: {
