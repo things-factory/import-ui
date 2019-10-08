@@ -29,7 +29,7 @@ function onFileChanged(event) {
   }
 
   // Tell JS To Start Reading The File.. You could delay this if desired
-  reader.readAsBinaryString(fileObj)
+  extension === 'xlsx' ? reader.readAsArrayBuffer(fileObj) : reader.readAsBinaryString(fileObj)
 }
 
 function uploadFile() {
