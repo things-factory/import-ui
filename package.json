@@ -1,6 +1,6 @@
 {
   "name": "@things-factory/import-ui",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "main": "dist-server/index.js",
   "browser": "client/index.js",
   "things-factory": true,
@@ -30,9 +30,9 @@
     "@things-factory/shell": "^1.0.0-alpha.1"
   },
   "devDependencies": {
-    "@things-factory/auth-ui-jwt": "*",
-    "@things-factory/biz-test": "*",
-    "@things-factory/menu-ui": "*",
-    "@things-factory/resource-ui": "*"
+    "@things-factory/auth-ui-jwt": "^1.0.0-alpha.1",
+    "@things-factory/biz-test": "^1.0.0-alpha.1",
+    "@things-factory/menu-ui": "^1.0.0-alpha.1",
+    "@things-factory/resource-ui": "^1.0.0-alpha.1"
   }
 }
