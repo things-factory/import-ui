@@ -1,7 +1,7 @@
 import '@material/mwc-button/mwc-button'
 import '@things-factory/grist-ui'
 import { i18next, localize } from '@things-factory/i18n-base'
-import { isMobileDevice, ScrollbarStyles } from '@things-factory/shell'
+import { isMobileDevice, ScrollbarStyles, CustomAlert } from '@things-factory/shell'
 import { css, html, LitElement } from 'lit-element'
 
 class ImportPopUp extends localize(i18next)(LitElement) {
@@ -58,8 +58,6 @@ class ImportPopUp extends localize(i18next)(LitElement) {
 
   render() {
     return html`
-      <h2>${i18next.t('title.import_new_data')}</h2>
-
       <div class="grist">
         <data-grist .mode=${isMobileDevice() ? 'LIST' : 'GRID'} .config=${this._config}></data-grist>
       </div>
@@ -67,8 +65,14 @@ class ImportPopUp extends localize(i18next)(LitElement) {
       <div class="button-container">
         <mwc-button
           @click=${() => {
-            if (this.importHandler && typeof this.importHandler === 'function') {
-              this.importHandler(this.getCurrentRecord())
+            const patches = this.getCurrentRecord()
+            if (patches.length) {
+              this.importHandler(patches)
+            } else {
+              CustomAlert({
+                title: i18next.t('text.nothing_selected'),
+                text: i18next.t('text.there_is_nothing_to_save')
+              })
             }
           }}
           >${i18next.t('button.import')}</mwc-button
@@ -80,17 +84,17 @@ class ImportPopUp extends localize(i18next)(LitElement) {
 
   updated(changedProps) {
     if (changedProps.has('config')) {
-      this.config.columns.splice(0, 0, { type: 'gutter', gutterName: 'row-selector', multiple: true })
+      const columns = ((this.config && this.config.columns) || []).filter(c => c.type !== 'gutter')
 
       this._config = {
         ...this.config,
         pagination: { infinite: true },
-        columns: this.config.columns
+        columns: [{ type: 'gutter', gutterName: 'row-selector', multiple: true }, ...columns]
       }
     }
   }
 
-  async firstUpdated() {
+  firstUpdated() {
     this.dataGrist.data = {
       records: this.records,
       total: this.records.length
@@ -98,25 +102,21 @@ class ImportPopUp extends localize(i18next)(LitElement) {
   }
 
   getCurrentRecord() {
-    const grist = this.shadowRoot.querySelector('data-grist')
-    grist.commit()
-    //patches is array of records
-
-    return grist.selected.map(record => {
-      var selectedRecords = {
-        ...record,
-        cuFlag: '+'
+    // 1. Check whether there are selected records
+    let selectedRecords = this.dataGrist.selected
+    const reg = /__\w+__/
+    selectedRecords = selectedRecords.map(record => {
+      const tempRecord = { cuFlag: '+' }
+      for (let key in record) {
+        if (!reg.test(key)) {
+          tempRecord[key] = record[key]
+        }
       }
 
-      delete selectedRecords.__seq__
-      delete selectedRecords.__dirty__
-      delete selectedRecords.__selected__
-      delete selectedRecords.__changes__
-      delete selectedRecords.__dirtyfields__
-      delete selectedRecords.__origin__
-
-      return selectedRecords
+      return tempRecord
     })
+
+    return selectedRecords
   }
 }
 
