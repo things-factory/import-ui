@@ -64,9 +64,16 @@ class ImportPopUp extends localize(i18next)(LitElement) {
 
       <div class="button-container">
         <mwc-button
-          @click=${() => {
+          @click=${async () => {
             const patches = this.getCurrentRecord()
             if (patches.length) {
+              const answer = await CustomAlert({
+                title: i18next.t('label.import'),
+                text: i18next.t('text.are_you_sure')
+              })
+
+              if (!answer.value) return
+
               this.importHandler(patches)
             } else {
               CustomAlert({
