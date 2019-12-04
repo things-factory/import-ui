@@ -69,7 +69,9 @@ class ImportPopUp extends localize(i18next)(LitElement) {
             if (patches.length) {
               const answer = await CustomAlert({
                 title: i18next.t('label.import'),
-                text: i18next.t('text.are_you_sure')
+                text: i18next.t('text.are_you_sure'),
+                confirmButton: { text: i18next.t('button.import') },
+                cancelButton: { text: i18next.t('button.cancel') }
               })
 
               if (!answer.value) return
