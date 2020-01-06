@@ -1,6 +1,6 @@
 {
   "name": "@things-factory/import-ui",
-  "version": "1.0.0-alpha.6",
+  "version": "2.0.0",
   "main": "dist-server/index.js",
   "browser": "client/index.js",
   "things-factory": true,
@@ -23,17 +23,17 @@
     "migration:revert": "node ./node_modules/typeorm/cli.js migration:revert"
   },
   "dependencies": {
-    "@things-factory/context-base": "^1.0.0-alpha.1",
-    "@things-factory/grist-ui": "^1.0.0-alpha.1",
-    "@things-factory/i18n-base": "^1.0.0-alpha.1",
-    "@things-factory/import-base": "^1.0.0-alpha.1",
-    "@things-factory/layout-base": "^1.0.0-alpha.1",
-    "@things-factory/shell": "^1.0.0-alpha.1"
+    "@things-factory/context-base": "^2.0.0",
+    "@things-factory/grist-ui": "^2.0.0",
+    "@things-factory/i18n-base": "^2.0.0",
+    "@things-factory/import-base": "^2.0.0",
+    "@things-factory/layout-base": "^2.0.0",
+    "@things-factory/shell": "^2.0.0"
   },
   "devDependencies": {
-    "@things-factory/auth-ui-jwt": "^1.0.0-alpha.1",
-    "@things-factory/biz-test": "^1.0.0-alpha.1",
-    "@things-factory/menu-ui": "^1.0.0-alpha.1",
-    "@things-factory/resource-ui": "^1.0.0-alpha.1"
+    "@things-factory/auth-ui-jwt": "^2.0.0",
+    "@things-factory/biz-test": "^2.0.0",
+    "@things-factory/menu-ui": "^2.0.0",
+    "@things-factory/resource-ui": "^2.0.0"
   }
 }
