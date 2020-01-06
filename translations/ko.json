@@ -1,0 +1,8 @@
+{
+  "button.cancel": "취소",
+  "button.import": "가져 오기",
+  "label.import": "가져 오기",
+  "text.are_you_sure": "진행하시겠습니까?",
+  "text.nothing_selected": "선택되지 않음",
+  "text.there_is_nothing_to_save": "저장할 데이터가 없습니다."
+}
