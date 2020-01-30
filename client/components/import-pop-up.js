@@ -1,7 +1,9 @@
 import '@material/mwc-button/mwc-button'
 import '@things-factory/grist-ui'
 import { i18next, localize } from '@things-factory/i18n-base'
-import { isMobileDevice, ScrollbarStyles, CustomAlert } from '@things-factory/shell'
+import { CustomAlert } from '@things-factory/shell'
+import { ScrollbarStyles } from '@things-factory/styles'
+import { isMobileDevice } from '@things-factory/utils'
 import { css, html, LitElement } from 'lit-element'
 
 class ImportPopUp extends localize(i18next)(LitElement) {
