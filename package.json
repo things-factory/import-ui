@@ -27,8 +27,7 @@
     "@things-factory/grist-ui": "^2.0.0",
     "@things-factory/i18n-base": "^2.0.0",
     "@things-factory/import-base": "^2.0.0",
-    "@things-factory/layout-base": "^2.0.0",
-    "@things-factory/shell": "^2.0.0"
+    "@things-factory/layout-base": "^2.0.0"
   },
   "devDependencies": {
     "@things-factory/auth-ui-jwt": "^2.0.0",
